@@ -1,0 +1,26 @@
+---
+- name: Install GeoIP
+  ansible.builtin.apt:
+    name: geoipupdate
+    state: present
+  become: true
+  notify: Download DB
+
+- name: Ensure DB directory exists
+  ansible.builtin.file:
+    path: "{{ geoip_db_directory }}"
+    state: directory
+    owner: "{{ geoip_config_user }}"
+    group: "{{ geoip_config_group }}"
+    mode: 0755
+  become: yes
+
+- name: Write GeoIP config
+  ansible.builtin.template:
+    src: templates/GeoIP.conf.j2
+    dest: "{{ geoip_config_path }}"
+    owner: "{{ geoip_config_user }}"
+    group: "{{ geoip_config_group }}"
+    mode: 0600
+  become: yes
+  notify: Download DB

@@ -1,0 +1,6 @@
+---
+# handlers file for hydra
+- name: Download DB
+  ansible.builtin.command:
+    cmd: "{{ geoip_update_path }}"
+  become: yes

@@ -1,0 +1,14 @@
+---
+geoip_db_editions:
+  - GeoLite2-Country
+geoip_db_directory: /usr/share/GeoIP
+
+geoip_config_path: /etc/GeoIP.conf
+
+geoip_config_user: root
+geoip_config_group: root
+
+geoip_update_path: /usr/bin/geoipupdate
+
+geoip_account_id: ''
+geoip_license_key: ''
